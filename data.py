@@ -7,23 +7,28 @@ vectors_colors = {
     "green": [0, 1, 0, 0, 0, 0, 0, 0],
     "blue": [0, 0, 1, 0, 0, 0, 0, 0],
     "yellow": [0, 0, 0, 1, 0, 0, 0, 0],
-    "purple": [0, 0, 0, 0, 1, 0, 0, 0],
-    "orange": [0, 0, 0, 0, 0, 1, 0, 0],
-    "cyan": [0, 0, 0, 0, 0, 0, 1, 0],
-    "white": [0, 0, 0, 0, 0, 0, 0, 1],
+    # "purple": [0, 0, 0, 0, 1, 0, 0, 0],
+    # "orange": [0, 0, 0, 0, 0, 1, 0, 0],
+    # "cyan": [0, 0, 0, 0, 0, 0, 1, 0],
+    # "white": [0, 0, 0, 0, 0, 0, 0, 1],
 }
 
 # Output - 3D position for each color
 color_to_point = {
-    "red": [0.5, 0.5, 0.5, 0.0, 0.0, 0.0],
-    "green": [0.5, 0.5, 0.5, 1.0, 0.0, 0.0],
-    "blue": [0.5, 0.5, 0.5, 0.0, 1.0, 0.0],
-    "yellow": [0.5, 0.5, 0.5, 1.0, 1.0, 0.0],
-    "purple": [0.5, 0.5, 0.5, 0.0, 0.0, 1.0],
-    "orange": [0.5, 0.5, 0.5, 1.0, 0.0, 1.0],
-    "cyan": [0.5, 0.5, 0.5, 0.0, 1.0, 1.0],
-    "white": [0.5, 0.5, 0.5, 1.0, 1.0, 1.0],
+    "red": [0.0, 0.0],
+    "green": [1.0, 0.0],
+    "blue": [0.0, 1.0],
+    "yellow": [1.0, 1.0]
 }
+    # "red": [0.0, 0.0, 0.0],
+    # "green": [1.0, 0.0, 0.0],
+    # "blue": [0.0, 1.0, 0.0],
+    # "yellow": [1.0, 1.0, 0.0],
+#     "purple": [0.0, 0.0, 1.0],
+#     "orange": [1.0, 0.0, 1.0],
+#     "cyan": [0.0, 1.0, 1.0],
+#     "white": [1.0, 1.0, 1.0],
+# }
 
 def generate_example():
     """Returns a random (input_vector, target_position) pair as torch tensors"""
@@ -35,6 +40,19 @@ def generate_example():
     # movement = target_vec - start_pos
     #---------------------------------
     return input_vec, target_vec
+
+# def generate_example():
+#     """Returns a (input_vector, target_movement_vector) pair"""
+#     start_pos = torch.tensor([0.5, 0.5], dtype=torch.float32)  # always start from center
+#
+#     color = random.choice(list(vectors_colors.keys()))
+#     input_vec = torch.tensor(vectors_colors[color], dtype=torch.float32)
+#     target_pos = torch.tensor(color_to_point[color], dtype=torch.float32)
+#
+#     movement = target_pos - start_pos  # what the network should learn
+#
+#     return input_vec, movement
+
 
 def create_batch(batch_size=32, T=10):
     """Creates a batch of repeated input-target sequences over T time steps."""
